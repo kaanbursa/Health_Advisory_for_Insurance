@@ -45,7 +45,8 @@ class Regressor():
             plt.legend()
             plt.shot()
         return r2_score(y_test,y_pred), mean_squared_error(y_test,y_pred)
-    def interactions(df,target,baseline):
+
+    def interactions(self, df,target,baseline):
         features = df.drop([target],axis=1)
         y = df[target]
         interactions_l = []
@@ -57,4 +58,4 @@ class Regressor():
             score = np.mean(cross_val_score(linreg, data, y, scoring='r2', cv=cros_val))
             print(score)
             if score > baseline: interactions_l.append((comb[0], comb[1], round(score,3)))
-        return sorted(interactions, key=lambda inter: inter[2], reverse=True)[:3])
+        return sorted(interactions, key=lambda inter: inter[2], reverse=True)[:3]
